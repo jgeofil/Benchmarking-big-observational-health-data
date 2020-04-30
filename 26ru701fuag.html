@@ -32,8 +32,8 @@
 </div><div>One of the earliest developed columnar DBMSs is MonetDB <cite class="ltx_cite raw v1">\cite{idreos2012monetdb}</cite>, in its current form initially created in 2002, and is globally used by research institutes and businesses, as well for educational purposes. The open-source DBMS claims “innovations in all layers of the DBMS,” such as:
 </div><ul><li>CPU optimized query execution architecture;
 </li><li>Automatic and self-tuning indexes;
-</li></ul><div>Run-time query optimization;
-</div><div>Vertical fragmentation to store data;
+</li><li>Run-time query optimization;
+</li></ul><div>Vertical fragmentation to store data;
 </div><div>The database architecture of MonetBD is represented in three layers; the first layer accommodates the SQL query interface and parses this into custom MonetDB Assembly Language (MAL) instructions. These instructions are sent to the next — middle — layer and optimized. The bottom layer connects to the data, which is stored in Binary Association Tables (BATs). Each data column in MonetDB is stored in a {object-identifier, value} table, creating a BAT.
 </div><div>
 </div><div>In contrast to the previously mentioned DBMSs, PostgreSQL is a traditional DBMS; it stores data by row. With over 30 years of development, it has established itself as a reliable, performant, extensible, and feature robust general purpose open-source DBMS used by a great number of products and organizations to safely and robustly store data. 
