@@ -12,4 +12,38 @@
 </div><div>Cached memory;
 </div><div>
 </div><div>In addition, DBMS optimization will be analyzed by comparing benchmarks with default settings versus hardware and software optimized configurations. Downscaling (removing data) and upscaling (copy data) the MIMIC-III dataset allows for scalability analysis. Lastly, database stability testing is performed.
-</div><div></div>
+</div><div>Databases
+</div><div>Apache Druid is a columnar data store written in Java designed to handle enormous amounts of event data with sub-second queries. In-house development of Druid started in 2011 by Metamarkets to operate their analytics product, after which it was open-sourced in 2012 and advanced under the Apache License in 2015. Since then, dozens of powerhouses like Alibaba, Airbnb, and Netflix incorporated Druid to run business intelligence in production. Druid’s internal architecture is split up into several distinct processes:
+</div><div>Broker, which handle queries;
+</div><div>Coordinator, which handle availability of data;
+</div><div>Historical, which store data ready for querying;
+</div><div>MiddleManager, which handle ingestion of data;
+</div><div>Overlord, which assign workloads w.r.t. data ingestion;
+</div><div>Router, [optional] which forward requests to Brokers, Coordinators, and Overlords;
+</div><div>Each of those processes can be composed and deployed independently.
+</div><div>
+</div><div>Druid uses so-called “datasources” to store the data, which are functionally equivalent to tables in relational DBMSs (RDBMS). In contrast to RDBMS, normalization — to eliminate data redundancy — is not supported in Druid: the datasources must be totally flat.
+</div><div>Datasources are always partitioned by time, which generates “chunks” spanning a certain time range (e.g. a single day of events if partitioning is set to “day”). Each chunk is additionally partitioned into “segments,” single files that contain several million rows of data.
+</div><div>
+</div><div>Another column-oriented DBMS of interest marketed for high performance real-time data analysis is ClickHouse, which is developed by Yandex and was open-sourced under the Apache License in 2016. This DBMS has been successfully used in production in massive analytical undertakings by Cloudflare to perform real-time analysis of DNS and HTTP traffic and CERN to handle and store metadata on billions of events of the LHCb experiment, among many others. To obtain the advertised blazing fast processing speeds (“[ClickHouse] processes hundreds of millions to more than a billion rows per second”), the following items play an important role:
+</div><div>Columnar nature of stored data enables more “hot” data in RAM;
+</div><div>High CPU performance by processing parts of columns at a single moment (vectorized query execution) using specialized CPU instructions;
+</div><div>Data compression;
+</div><div>Linear scalability by adding additional servers;
+</div><div>
+</div><div>As with Druid, the data should fit in a single wide fact table. ClickHouse lacks database transactions as well as fully-developed UPDATE and DELETE implementations. Since all ClickHouse nodes are constructed equally, there is no single point of failure.
+</div><div>
+</div><div>One of the earliest developed columnar DBMSs is MonetDB, in its current form initially created in 2002, and is globally used by research institutes and businesses, as well for educational purposes. The open-source DBMS claims “innovations in all layers of the DBMS,” such as:
+</div><div>CPU optimized query execution architecture;
+</div><div>Automatic and self-tuning indexes;
+</div><div>Run-time query optimization;
+</div><div>Vertical fragmentation to store data;
+</div><div>The database architecture of MonetBD is represented in three layers; the first layer accommodates the SQL query interface and parses this into custom MonetDB Assembly Language (MAL) instructions. These instructions are sent to the next — middle — layer and optimized. The bottom layer connects to the data, which is stored in Binary Association Tables (BATs). Each data column in MonetDB is stored in a {object-identifier, value} table, creating a BAT.
+</div><div>
+</div><div>In contrast to the previously mentioned DBMSs, PostgreSQL is a traditional DBMS; it stores data by row. With over 30 years of development, it has established itself as a reliable, performant, extensible, and feature robust general purpose open-source DBMS used by a great number of products and organizations to safely and robustly store data. 
+</div><div>It is designed to be the single source of truth, which is accomplished by featuring transactions that have ACID properties (atomicity, consistency, isolation, duration).
+</div><div>Predictions
+</div><div>My prediction in general is that all columnar DBMSs outperform the traditional DBMS PostgreSQL in query execution time, solely due to the read-optimized nature of these column-oriented systems when performing OLAP-style queries.
+</div><div>
+</div><div>Between columnar DBMSs, I expect ClickHouse and MonetDB — which are DBMSs written in low-level programming languages (i.e. C++ and C, respectively) — to outperform Apache Druid that is written in Java given the ability of these languages to interact closer to bare metal and having less overhead compared to higher-level programming languages.
+</div>
