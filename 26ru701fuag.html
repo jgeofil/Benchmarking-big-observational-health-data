@@ -18,8 +18,8 @@
 </li><li><b>Coordinator</b>, which handle availability of data;
 </li><li><b>Historical</b>, which store data ready for querying;
 </li><li><b>MiddleManager</b>, which handle ingestion of data;
-</li></ul><div><b>Overlord</b>, which assign workloads w.r.t. data ingestion;
-</div><div><b>Router</b>, [optional] which forward requests to Brokers, Coordinators, and Overlords;
+</li><li><b>Overlord</b>, which assign workloads w.r.t. data ingestion;
+</li></ul><div><b>Router</b>, [optional] which forward requests to Brokers, Coordinators, and Overlords;
 </div></blockquote><div>Each of those processes can be composed and deployed independently.
 </div><div>Druid uses so-called “datasources” to store the data, which are functionally equivalent to tables in relational DBMSs (RDBMS). In contrast to RDBMS, normalization — to eliminate data redundancy — is not supported in Druid: the datasources must be totally flat.
 </div><div>Datasources are always partitioned by time, which generates “chunks” spanning a certain time range (e.g. a single day of events if partitioning is set to “day”). Each chunk is additionally partitioned into “segments,” single files that contain several million rows of data.
