@@ -37,8 +37,8 @@
 </li></ul><div>The database architecture of MonetBD is represented in three layers; the first layer accommodates the SQL query interface and parses this into custom MonetDB Assembly Language (MAL) instructions. These instructions are sent to the next — middle — layer and optimized. The bottom layer connects to the data, which is stored in Binary Association Tables (BATs). Each data column in MonetDB is stored in a&nbsp;<code>{object-identifier, value}</code> table, creating a BAT.
 </div><div>In contrast to the previously mentioned DBMSs, PostgreSQL&nbsp;<cite class="ltx_cite raw v1">\cite{database}</cite> is a traditional DBMS; it stores data by row. With over 30 years of development, it has established itself as a reliable, performant, extensible, and feature robust general purpose open-source DBMS used by a great number of products and organizations to safely and robustly store data. 
 </div><div>It is designed to be the single source of truth, which is accomplished by featuring transactions that have ACID properties (atomicity, consistency, isolation, duration).
-</div><div>Predictions
-</div><div>My prediction in general is that all columnar DBMSs outperform the traditional DBMS PostgreSQL in query execution time, solely due to the read-optimized nature of these column-oriented systems when performing OLAP-style queries.
+</div><h1 data-label="308328" class="ltx_title_section">Predictions
+</h1><div>My prediction in general is that all columnar DBMSs outperform the traditional DBMS PostgreSQL in query execution time, solely due to the read-optimized nature of these column-oriented systems when performing OLAP-style queries.
 </div><div>
 </div><div>Between columnar DBMSs, I expect ClickHouse and MonetDB — which are DBMSs written in low-level programming languages (i.e. C++ and C, respectively) — to outperform Apache Druid that is written in Java given the ability of these languages to interact closer to bare metal and having less overhead compared to higher-level programming languages.
 </div>
