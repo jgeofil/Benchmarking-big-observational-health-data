@@ -19,8 +19,8 @@
 </li><li><b>Historical</b>, which store data ready for querying;
 </li><li><b>MiddleManager</b>, which handle ingestion of data;
 </li><li><b>Overlord</b>, which assign workloads w.r.t. data ingestion;
-</li></ul><div><b>Router</b>, [optional] which forward requests to Brokers, Coordinators, and Overlords;
-</div></blockquote><div>Each of those processes can be composed and deployed independently.
+</li><li><b>Router</b>, [optional] which forward requests to Brokers, Coordinators, and Overlords;
+</li></ul></blockquote><div>Each of those processes can be composed and deployed independently.
 </div><div>Druid uses so-called “datasources” to store the data, which are functionally equivalent to tables in relational DBMSs (RDBMS). In contrast to RDBMS, normalization — to eliminate data redundancy — is not supported in Druid: the datasources must be totally flat.
 </div><div>Datasources are always partitioned by time, which generates “chunks” spanning a certain time range (e.g. a single day of events if partitioning is set to “day”). Each chunk is additionally partitioned into “segments,” single files that contain several million rows of data.
 </div><div>Another column-oriented DBMS of interest marketed for high performance real-time data analysis is ClickHouse, which is developed by Yandex and was open-sourced under the Apache License in 2016. This DBMS has been successfully used in production in massive analytical undertakings by Cloudflare to perform real-time analysis of DNS and HTTP traffic and CERN to handle and store metadata on billions of events of the LHCb experiment, among many others. To obtain the advertised blazing fast processing speeds (“[ClickHouse] processes hundreds of millions to more than a billion rows per second”), the following items play an important role:
