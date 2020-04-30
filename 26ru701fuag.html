@@ -30,8 +30,8 @@
 </li><li>Linear scalability by adding additional servers;
 </li></ul><div>As with Druid, the data should fit in a single wide fact table. ClickHouse lacks database transactions as well as fully-developed UPDATE and DELETE implementations. Since all ClickHouse nodes are constructed equally, there is no single point of failure.
 </div><div>One of the earliest developed columnar DBMSs is MonetDB <cite class="ltx_cite raw v1">\cite{idreos2012monetdb}</cite>, in its current form initially created in 2002, and is globally used by research institutes and businesses, as well for educational purposes. The open-source DBMS claims “innovations in all layers of the DBMS,” such as:
-</div><div>CPU optimized query execution architecture;
-</div><div>Automatic and self-tuning indexes;
+</div><ul><li>CPU optimized query execution architecture;
+</li></ul><div>Automatic and self-tuning indexes;
 </div><div>Run-time query optimization;
 </div><div>Vertical fragmentation to store data;
 </div><div>The database architecture of MonetBD is represented in three layers; the first layer accommodates the SQL query interface and parses this into custom MonetDB Assembly Language (MAL) instructions. These instructions are sent to the next — middle — layer and optimized. The bottom layer connects to the data, which is stored in Binary Association Tables (BATs). Each data column in MonetDB is stored in a {object-identifier, value} table, creating a BAT.
