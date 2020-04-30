@@ -25,8 +25,8 @@
 </div><div>Datasources are always partitioned by time, which generates “chunks” spanning a certain time range (e.g. a single day of events if partitioning is set to “day”). Each chunk is additionally partitioned into “segments,” single files that contain several million rows of data.
 </div><div>Another column-oriented DBMS of interest marketed for high performance real-time data analysis is ClickHouse, which is developed by Yandex and was open-sourced under the Apache License in 2016. This DBMS has been successfully used in production in massive analytical undertakings by Cloudflare to perform real-time analysis of DNS and HTTP traffic and CERN to handle and store metadata on billions of events of the LHCb experiment, among many others. To obtain the advertised blazing fast processing speeds (“[ClickHouse] processes hundreds of millions to more than a billion rows per second”), the following items play an important role:
 </div><ul><li>Columnar nature of stored data enables more “hot” data in RAM;
-</li></ul><div>High CPU performance by processing parts of columns at a single moment (vectorized query execution) using specialized CPU instructions;
-</div><div>Data compression;
+</li><li>High CPU performance by processing parts of columns at a single moment (vectorized query execution) using specialized CPU instructions;
+</li></ul><div>Data compression;
 </div><div>Linear scalability by adding additional servers;
 </div><div>
 </div><div>As with Druid, the data should fit in a single wide fact table. ClickHouse lacks database transactions as well as fully-developed UPDATE and DELETE implementations. Since all ClickHouse nodes are constructed equally, there is no single point of failure.
